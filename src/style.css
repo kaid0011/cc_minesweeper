@@ -95,20 +95,6 @@
   text-align: center; /* Optional: Center the text */
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .ref-card {
-    padding: 10px;
-  }
-
-  .text-ref-title {
-    font-size: 3em !important; /* Smaller font for smaller screens */
-  }
-
-  .right-container {
-    padding: 15px;
-  }
-}
 
 .counter {
   width: 110px;
@@ -149,7 +135,7 @@
 
 .game-card {
   background-color: #1e002c !important;
-  min-width: 50em !important;
+  width: 50em !important;
   padding: 2em !important;
 }
 
@@ -215,4 +201,67 @@
 
 .three-dialog {
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .ref-card {
+    padding: 10px;
+  }
+
+  .text-ref-title {
+    font-size: 3em !important; /* Smaller font for smaller screens */
+  }
+
+  .right-container {
+    padding: 15px;
+  }
+
+  .cellM {
+    width: 2em !important;
+    height: 2em !important;
+    border: 4px solid rgb(93, 93, 93) !important;
+    border-radius: 0 !important;
+  }
+
+  .main-container{
+    padding: 1em;
+  }
+
+  .counter {
+    width: 6.5em !important;
+    height: 5em !important;
+    background-color: #c293d8 !important;
+  }
+  .game-card {
+    width: 100vw !important;
+    padding: 1em !important;
+  }
+  .main-btn {
+    height: 5em !important;
+    width: 8em !important;
+  }
+
+  .bomb-card {
+    min-width: 90vw;
+    min-height: 90vh;
+  }
+  
+  .one-card {
+    min-width: 90vw;
+    min-height: 90vh;
+  }
+  
+  
+  .two-card {
+    min-width: 90vw;
+    min-height: 90vh;
+  }
+  
+  .three-card {
+    min-width: 90vw;
+    min-height: 90vh;
+  }
+  
+  
 }

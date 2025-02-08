@@ -28,7 +28,7 @@
           <div class="col-md-6 col-sm-12 q-pa-lg justify-center">
             <q-card class="right-container q-pa-lg">
               <div class="text-h6 lexend-font text-pink-4 q-mt-sm q-mb-md">
-                One of the loyal customers invited? Enter your reference code to
+                One of the loyal customers invited? Enter your reference number to
                 play the game!
               </div>
               <q-input
@@ -42,7 +42,7 @@
               <div class="text-caption text-white lexend-font q-mt-sm">
                 <span class="text-pink-4">NOTE:</span> You can only enter the
                 game once. Once you enter the game, you cannot reuse your
-                reference code. Use it wisely.
+                reference number. Use it wisely.
               </div>
               <q-btn
                 class="ref-btn full-width q-my-lg"
@@ -61,7 +61,7 @@
     <div v-else-if="!isTokenValid"></div>
     <div v-else class="main-game">
       <div class="row">
-        <div class="col-6 q-px-md q-pt-xl">
+        <div class="col-md-6 col-sm-12 q-px-md q-pt-xl justify-center">
           <div class="text-white text-center lexend-font text-h2 q-ma-lg">
             <!-- Welcome to the Cotton Care Minesweeper Challenge -->
           </div>
@@ -89,7 +89,7 @@
           </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-md-6 col-sm-12">
           <div
             class="row justify-center items-center text-center text-weight-bolder lexend-font q-mb-sm q-mt-lg"
           >
@@ -109,7 +109,7 @@
             </q-card>
           </div>
 
-          <div class="row justify-center">
+          <div class="row justify-center q-pa-none">
             <div class="gridM">
               <div
                 v-for="(rowM, rowIndex) in board"
@@ -236,7 +236,7 @@
     <q-dialog class="bomb-dialog" v-model="showBombDialog" persistent>
       <q-card flat class="bomb-card">
       <div class="text-h6 text-center text-white">You picked cell #{{ pickedCellId }}</div>
-
+      <div class="text-subtitle1 text-center text-white">Reference No: {{ pickedReferenceNo }}</div>
         <!-- Close (X) Button -->
         <!-- <div class="row justify-end">
       <q-btn dense icon="close" color="white" @click="showBombDialog = false" class="bg-red" />
@@ -250,18 +250,21 @@
     <q-dialog class="one-dialog" v-model="showOneDialog" persistent>
       <q-card flat class="one-card">
         <div class="text-h6 text-center text-white">You picked cell #{{ pickedCellId }}</div>
+        <div class="text-subtitle1 text-center text-white">Reference No: {{ pickedReferenceNo }}</div>
       </q-card>
     </q-dialog>
 
     <q-dialog class="two-dialog" v-model="showTwoDialog" persistent>
       <q-card flat class="two-card">
         <div class="text-h6 text-center text-white">You picked cell #{{ pickedCellId }}</div>
+        <div class="text-subtitle1 text-center text-white">Reference No: {{ pickedReferenceNo }}</div>
       </q-card>
     </q-dialog>
 
     <q-dialog class="three-dialog" v-model="showThreeDialog" persistent>
       <q-card flat class="three-card">
         <div class="text-h6 text-center text-white">You picked cell #{{ pickedCellId }}</div>
+        <div class="text-subtitle1 text-center text-white">Reference No: {{ pickedReferenceNo }}</div>
       </q-card>
     </q-dialog>
   </div>
@@ -412,12 +415,14 @@ const showThreeDialog = ref(false);
 const showBombDialog = ref(false);
 
 const pickedCellId = ref(null); // Stores the picked cell ID
+const pickedReferenceNo = ref(""); // Stores the reference number used
 
 const revealCell = async (x, y) => {
   if (board.value[x][y].revealed) return; // Prevent duplicate clicks
 
   board.value[x][y].revealed = true; // Reveal the cell
   pickedCellId.value = x * cols + y + 1; // Store the clicked cell ID (convert x, y to ID)
+  pickedReferenceNo.value = referenceNo.value; // Store the reference number used
 
   // Determine which dialog to show based on cell value
   if (board.value[x][y].mine) {
@@ -433,6 +438,5 @@ const revealCell = async (x, y) => {
   // Update database status
   await updateCellStatus(pickedCellId.value, true);
 };
-
 
 </script>
